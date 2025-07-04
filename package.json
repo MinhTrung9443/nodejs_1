@@ -1,0 +1,32 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MinhTrung9443/nodejs_1.git"
+  },
+  "keywords": [
+    "blog",
+    "nodejs",
+    "mt"
+  ],
+  "author": "minhtrung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MinhTrung9443/nodejs_1/issues"
+  },
+  "homepage": "https://github.com/MinhTrung9443/nodejs_1#readme",
+  "description": "",
+  "dependencies": {
+    "daemon": "^1.1.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
