@@ -1,7 +1,7 @@
- const express = require("express");
-   const morgan = require("morgan");
-    var { engine } = require("express-handlebars"); // Import the engine function
-     const path = require("path");
+const express = require('express');
+const morgan = require('morgan');
+var { engine } = require('express-handlebars'); // Import the engine function
+const path = require('path');
 const app = express();
 const port = 3000;
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static files
-            app.use(express.static(path.join(__dirname, 'resources/public')));
+app.use(express.static(path.join(__dirname, 'resources/public')));
 
 // HTTP logger
 // app.use(morgan("combined"));
@@ -24,16 +24,13 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-          app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources/views'));
 
 // Route
 
 // Route init
-route(          app); // Initialize the routes
+route(app); // Initialize the routes
 
-          app.listen(port, () => {
-              console.log(`Example app listening on port http://localhost:${port}`);
-          });
-
-
-
+app.listen(port, () => {
+    console.log(`Example app listening on port http://localhost:${port}`);
+});
