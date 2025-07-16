@@ -24,16 +24,16 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+          app.set('views', path.join(__dirname, 'resources/views'));
 
 // Route
 
 // Route init
-route(app); // Initialize the routes
+route(          app); // Initialize the routes
 
-app.listen(port, () => {
-    console.log(`Example app listening on port http://localhost:${port}`);
-});
+          app.listen(port, () => {
+              console.log(`Example app listening on port http://localhost:${port}`);
+          });
 
 
 
