@@ -1,12 +1,12 @@
 class SiteController {
-  index(req, res) {
-    res.render("home");
-  }
+    index(req, res) {
+        res.render('home');
+    }
 
-  search(req, res) {
-    console.log(req.query);
-    res.render("search");
-  }
+    search(req, res) {
+        console.log(req.query);
+        res.render('search');
+    }
 }
 
 module.exports = new SiteController(); // Create an instance of SiteController
