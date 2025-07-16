@@ -1,17 +1,12 @@
-@import "_variables";
-
 .test {
   font-size: 1rem;
   color: #333;
   background-color: #f8f9fa;
   padding: 1rem;
-  margin: 1rem 0;
-}
+  margin: 1rem 0; }
 
 h1 {
   font-size: 2rem;
-  color: $red-color;
+  color: green;
   text-align: center;
-  margin-top: 2rem;
-  
-}
+  margin-top: 2rem; }

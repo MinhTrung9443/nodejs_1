@@ -5,11 +5,18 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+const route = require("./routes/index.js"); // Import the route function
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+
 // Static files
 app.use(express.static(path.join(__dirname, "resources/public")));
 
 // HTTP logger
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 // Template engine
 app.engine(
@@ -22,13 +29,12 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
 // Route
-app.get("/", (req, res) => {
-  res.render("home");
-});
 
-app.get("/news", (req, res) => {
-  res.render("new");
-});
+
+// Route init 
+route(app); // Initialize the routes
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
