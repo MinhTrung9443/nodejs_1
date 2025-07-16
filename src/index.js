@@ -5,26 +5,26 @@
 const app = express();
 const port = 3000;
 
-const route = require("./routes/index.js"); // Import the route function
+const route = require('./routes/index.js'); // Import the route function
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static files
-app.use(express.static(path.join(__dirname, "resources/public")));
+            app.use(express.static(path.join(__dirname, 'resources/public')));
 
 // HTTP logger
 // app.use(morgan("combined"));
 
 // Template engine
 app.engine(
-  "hbs",
-  engine({
-    extname: ".hbs",
-  })
+    'hbs',
+    engine({
+        extname: '.hbs',
+    }),
 );
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'resources/views'));
 
 // Route
 
@@ -32,5 +32,5 @@ app.set("views", path.join(__dirname, "resources/views"));
 route(app); // Initialize the routes
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
+    console.log(`Example app listening on port http://localhost:${port}`);
 });
