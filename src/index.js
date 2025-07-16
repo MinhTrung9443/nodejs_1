@@ -6,6 +6,11 @@ const app = express();
 const port = 3000;
 
 const route = require('./routes/index.js'); // Import the route function
+const db = require('./config/db/index.js'); // Import the database connection
+
+// Connect to the database
+db.connect();
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,8 +30,6 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
-
-// Route
 
 // Route init
 route(app); // Initialize the routes

@@ -1,11 +1,32 @@
+const Course = require('../models/Course.js'); // Import the Course model
+const { multipleMongooseToObject } = require('../../util/mongoose.js'); // Import utility functions for Mongoose
+
 class SiteController {
-    index(req, res) {
-        res.render('home');
+    async index(req, res) {
+        Course.find({})
+            .then((courses) => {
+                res.render('home', {
+                    courses: multipleMongooseToObject(courses),
+                });
+            })
+            .catch((err) => {
+                res.status(400).json({
+                    error: 'Error fetching courses',
+                });
+            });
     }
 
-    search(req, res) {
-        console.log(req.query);
-        res.render('search');
+    async search(req, res) {
+        const query = req.query.q;
+        Course.find({ title: { $regex: query, $options: 'i' } })
+            .then((courses) => {
+                res.json(courses);
+            })
+            .catch((err) => {
+                res.status(400).json({
+                    error: 'Error searching courses',
+                });
+            });
     }
 }
 
