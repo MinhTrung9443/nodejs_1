@@ -11,22 +11,13 @@ class SiteController {
             })
             .catch((err) => {
                 res.status(400).json({
-                    error: 'Error fetching courses',
+                    error: 'Error1 fetching courses',
                 });
             });
     }
 
     async search(req, res) {
-        const query = req.query.q;
-        Course.find({ title: { $regex: query, $options: 'i' } })
-            .then((courses) => {
-                res.json(courses);
-            })
-            .catch((err) => {
-                res.status(400).json({
-                    error: 'Error searching courses',
-                });
-            });
+        res.send('Search functionality is not implemented yet.');
     }
 }
 
