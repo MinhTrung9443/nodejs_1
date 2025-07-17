@@ -1,0 +1,42 @@
+<h1>COURSE CREATE</h1>
+
+<div class="mt-4">
+  <h3>Create a new course</h3>
+  <form action="/courses/store" method="POST">
+    <div class="form-group">
+      <label for="name">Course Name</label>
+      <input type="text" id="name" name="name" class="form-control" placeholder="Enter course name" />
+    </div>
+    <div class="form-group">
+      <label for="description">Course Description</label>
+      <textarea
+        id="description"
+        name="description"
+        class="form-control"
+        rows="3"
+        placeholder="Enter course description"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="level">Course level</label>
+      <textarea
+        id="level"
+        name="level"
+        class="form-control"
+        rows="3"
+        placeholder="Enter course level"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="videoId">YouTube Video ID</label>
+      <input
+        type="text"
+        id="videoId"
+        name="videoId"
+        class="form-control"
+        placeholder="Enter YouTube video ID"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Create Course</button>
+  </form>
+</div>

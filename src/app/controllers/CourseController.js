@@ -20,6 +20,28 @@ class CourseController {
             res.status(500).send('Internal Server Error'); // Send error response
         }
     }
+
+    async create(req, res) {
+        try {
+            res.render('courses/create'); // Render the course creation page
+        } catch (error) {
+            console.error(error); // Log any errors
+            res.status(500).send('Internal Server Error'); // Send error response
+        }
+    }
+
+    async store(req, res) {
+        try {
+            const course = new Course(req.body);
+            course.slug = course.name.toLowerCase().replace(/ /g, '-'); // Generate slug from course name
+            course.image = `https://img.youtube.com/vi/${course.videoId}/sddefault.jpg`; // Set image URL based on YouTube video ID
+            await course.save(); // Save the course to the database
+            res.redirect(`/courses/${course.slug}`); // Redirect to the newly created course's page
+        } catch (error) {
+            console.error(error); // Log any errors
+            res.status(500).send('Internal Server Error'); // Send error response
+        }
+    }
 }
 
 module.exports = new CourseController(); // Create an instance of CourseController
