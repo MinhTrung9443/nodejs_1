@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 var { engine } = require('express-handlebars'); // Import the engine function
+const methodOverride = require('method-override'); // Import method-override for PUT and DELETE methods
 const path = require('path');
 const app = express();
 const port = 3000;
@@ -17,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Static files
 app.use(express.static(path.join(__dirname, 'resources/public')));
+
+// Method override for PUT and DELETE methods
+app.use(methodOverride('_method'));
 
 // HTTP logger
 // app.use(morgan("combined"));

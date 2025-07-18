@@ -20,7 +20,7 @@ class CourseController {
             res.status(500).send('Internal Server Error');
         }
     }
-
+    // [GET] /courses/create
     async create(req, res) {
         try {
             res.render('courses/create');
@@ -29,14 +29,52 @@ class CourseController {
             res.status(500).send('Internal Server Error');
         }
     }
-
+    // [POST] /courses/store
     async store(req, res) {
         try {
             const course = new Course(req.body);
-            course.slug = course.name.toLowerCase().replace(/ /g, '-');
             course.image = `https://img.youtube.com/vi/${course.videoId}/sddefault.jpg`;
             await course.save();
             res.redirect(`/courses/${course.slug}`);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
+    }
+    // [GET] /courses/:id/edit
+    async edit(req, res) {
+        try {
+            Course.findOne({ _id: req.params.id })
+                .then((course) => {
+                    res.render('courses/edit', {
+                        course: mongooseToObject(course),
+                    });
+                })
+                .catch((err) => {
+                    console.error(err);
+                    res.status(404).send('Course not found');
+                });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
+    }
+    // [PUT] /courses/:id
+    async update(req, res) {
+        try {
+            const course = await Course.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                {
+                    new: true,
+                },
+            );
+            if (!course) {
+                return res.status(404).send('Course not found');
+            }
+            course.image = `https://img.youtube.com/vi/${course.videoId}/sddefault.jpg`;
+            await course.save();
+            res.redirect(`/me/stored/courses`);
         } catch (error) {
             console.error(error);
             res.status(500).send('Internal Server Error');
