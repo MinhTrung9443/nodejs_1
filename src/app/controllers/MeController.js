@@ -1,9 +1,20 @@
+const courses = require('../models/Course');
+const { multipleMongooseToObject } = require('../../util/mongoose');
+const { mongooseToObject } = require('../../util/mongoose');
+
 class MeController {
     async storedCourses(req, res) {
-        res.render('me/stored-courses');
+        courses
+            .find({})
+            .then((courses) =>
+                res.render('me/stored-courses', {
+                    courses: multipleMongooseToObject(courses),
+                }),
+            )
+            .catch((err) => res.status(500).send(err.message));
     }
     async show(req, res) {
-        res.sender('MeController.show method is not implemented yet.');
+        res.send('MeController.show method is not implemented yet.');
     }
 }
 
