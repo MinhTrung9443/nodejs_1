@@ -11,6 +11,7 @@ class MeController {
                     courses: multipleMongooseToObject(courses),
                 }),
             )
+
             .catch((err) => res.status(500).send(err.message));
     }
     async show(req, res) {
