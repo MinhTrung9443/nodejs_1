@@ -19,10 +19,54 @@
           <td>{{this.createdAt}}</td>
           <td>
             <a href="/courses/{{this._id}}/edit" class="btn btn-link">Edit</a>
-            <a href="/courses/{{this._id}}/delete" class="btn btn-link">Delete</a>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#delete-course-modal"
+              data-id="{{this._id}}"
+            >
+              Xóa
+            </button>
           </td>
         </tr>
       {{/each}}
     </tbody>
   </table>
 </div>
+
+{{! Confirm delete course }}
+<div id="delete-course-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận xóa khóa học</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xóa khóa học này không?</p>
+      </div>
+      <div class="modal-footer">
+
+        <form action="/courses/{{this._id}}?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        $('#delete-course-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var courseId = button.data('id'); // Extract info from data-* attributes
+            
+            // Update the form action with the course ID
+            var modal = $(this);
+            modal.find('form').attr('action', '/courses/' + courseId + '?_method=DELETE');
+        });
+    });
+</script>

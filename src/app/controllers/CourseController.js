@@ -80,6 +80,19 @@ class CourseController {
             res.status(500).send('Internal Server Error');
         }
     }
+    // [DELETE] /courses/:id
+    async destroy(req, res) {
+        try {
+            const course = await Course.findByIdAndDelete(req.params.id);
+            if (!course) {
+                return res.status(404).send('Course not found');
+            }
+            res.redirect(`/me/stored/courses`);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
+    }
 }
 
 module.exports = new CourseController(); // Create an instance of CourseController
